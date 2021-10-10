@@ -12,7 +12,7 @@ namespace DS_AlgorithemProblems
             string text = File.ReadAllText(filePath);
             string[] stringArray = text.Split(" ");
 
-            Console.WriteLine("1.Unordered List");
+            Console.WriteLine("1.Unordered List \n2. OrderList");
             Console.WriteLine("Enter Your Option");
             int choice = (Convert.ToInt32(Console.ReadLine()));
             switch (choice)
@@ -38,6 +38,28 @@ namespace DS_AlgorithemProblems
                     }
                     string data = unOrdered.Display();
                     File.WriteAllText(filePath, data);
+                    break;
+                case 2:
+                    OrderList<string> ordered = new OrderList<string>();
+
+                    for (int i = 0; i < stringArray.Length; i++)
+                    {
+                        ordered.Add(stringArray[i]);
+                    }
+                    //Get the input from user
+                    Console.WriteLine("Enter the word to searched:");
+                    string word1 = Console.ReadLine();
+                    int found1 = ordered.SearchNode(word1);
+                    if (found1 == 1)
+                    {
+                        ordered.DeleteNode(word1);
+                    }
+                    else
+                    {
+                        ordered.Add(word1);
+                    }
+                    string data1 = ordered.Display();
+                    File.WriteAllText(filePath, data1);
                     break;
             }
             Console.ReadLine();
