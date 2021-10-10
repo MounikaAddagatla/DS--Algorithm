@@ -12,7 +12,7 @@ namespace DS_AlgorithemProblems
             string text = File.ReadAllText(filePath);
             string[] stringArray = text.Split(" ");
 
-            Console.WriteLine("1.Unordered List \n2. OrderList");
+            Console.WriteLine("1.Unordered List \n2. OrderList \n3.  Balanced Paranthesis");
             Console.WriteLine("Enter Your Option");
             int choice = (Convert.ToInt32(Console.ReadLine()));
             switch (choice)
@@ -60,6 +60,29 @@ namespace DS_AlgorithemProblems
                     }
                     string data1 = ordered.Display();
                     File.WriteAllText(filePath, data1);
+                    break;
+                case 3:
+                    BalancedParenthesis<char> stack = new BalancedParenthesis<char>();
+                    string expression = "((5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/(4+3))";   // change or remove any parenthesis from eqns then o/p show error //
+                    for (int i = 0; i < expression.Length; i++)
+                    {
+                        if (expression[i].Equals('('))
+                        {
+                            stack.Push(expression[i]);
+                        }
+                        else if (expression[i].Equals(')'))
+                        {
+                            stack.Pop();
+                        }
+                    }
+                    if (stack.CheckParanthesis() == 1)
+                    {
+                        Console.WriteLine("Arithmetic Expression is balanced");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Arithmetic Expression is unbalanced");
+                    }
                     break;
             }
             Console.ReadLine();
